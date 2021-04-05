@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/change_page.js"></script>
+</head>
+
+<body>
+<!-- -->
+
+	<div id="content">
+		<script type="text/javascript">
+			$( "#content" ).load( "profile.html" );
+		</script>	 
+	</div>
+
+	<div id="panel_f" >
+
+		<div class="icons_f" id="usericon_f">
+	    	<img src="img/user_b.png" alt="" width="30" height="30">
+	    </div>
+
+	    <div class="icons_f" id="homeicon_f">
+	    	<img src="img/home.png" alt="" width="30" height="30">
+	    </div>
+
+	    <div class="icons_f" id="diaryicon_f">
+	    	<img src="img/diary.png" alt="" width="30" height="30">
+	    </div>
+
+	</div>
+
+	<style type="text/css">
+		#content {
+			z-index: 5;
+		}
+		#panel_f {
+			z-index: 10;
+			display: flex;
+			align-items: center;
+		  	justify-content: center;
+			background-color: #E1E1E1; 
+			height: 50px; 
+			width: 100vw; 
+			position: fixed; 
+			bottom: 0; 
+		} 
+		.icons_f {
+			margin: 0 5vw 0 5vw;
+		}
+
+		body {
+			background-color: #2F2F31;
+			margin: 0;
+			padding: 0;
+			
+			width: 100vw;
+			height: 100vh;
+		}
+
+	</style>
+	<script type="text/javascript">
+		$("#usericon_f").click(function(){
+			load_p("profile.html");
+		});
+		$("#homeicon_f").click(function(){
+			load_p("home.html");
+		});
+		$("#diaryicon_f").click(function(){
+			load_p("diary.html");
+		});
+	</script>
+	
+</body>
+</html>
+
+

@@ -1,0 +1,88 @@
+body {
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	color: #CCCCCC;
+}
+.page {
+	padding: 5%;
+	background-color: #161616;
+}
+.page1 {
+	padding: 5%;
+	background-color: #2F2F31;
+}
+#header {
+	font-size: 14pt;
+	width: 100%;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+#statistics {
+	width: 100%;
+}
+
+#curr_date{
+	text-align: center;
+	margin: 10px;
+}
+
+#stat_prot {
+	display: flex;
+}
+.text_progress {
+	text-align: right;
+	margin-right: 20px;
+	font-size: 10pt;
+}
+.labels {
+	margin-right: 20px;
+	position: absolute;
+}
+.progress {
+  width: 100%;
+  background-color: grey;
+  height: 14px;
+  margin:0 0 7px 40px;
+}
+
+.bar {
+  width: 1%;
+  height: 14px;
+  background-color: #E77817;
+}
+#meals {
+	width: 100%;
+  	
+}
+#table_meal {
+	background-color: #161616;
+	padding: 15px 10px 15px 10px;
+}
+#stat_meals {
+	display: flex;
+	justify-content: space-between;
+}
+
+#add_meal_button {
+    background-color: #E77817; 
+    border: none;
+    color: white;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+    border-radius: 50%;
+    margin: 0 auto;
+
+}
+.announcement {
+	text-align: center;
+	font-size: 10pt;
+	margin: 20px 0 30px 0;
+}

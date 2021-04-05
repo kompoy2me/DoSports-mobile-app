@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/diary.css">
+	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="js/testDB.js"></script>-->
+	<script src="js/change_page.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+  		$("#add_meal_button").click(function(){
+  			 load_p("create_meal.html");
+  		})
+	</script>
+
+<div class="page">
+
+<!--
+			HEADER
+-->
+	<div id="header">
+
+		<div id="arr_prev" class="arr"><</div>
+		<script type="text/javascript">
+			var now = new Date();
+			var days =["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+			var months =["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+			document.getElementById('curr_date').innerHTML = now.getDate() + " " + months[now.getMonth()] + ",<br>" +  days[now.getDay()];
+		</script>
+		<div id="curr_date"></div>
+
+		<div id="arr_next" class="arr">></div>
+
+	</div>
+
+<!--
+			STATISCTICS
+-->
+	<div id="statistics">
+
+		<div id="" class="text_progress">2/200</div>
+		<div id="stat_prot">
+			<div id="label_prot" class="labels">Б</div>
+			
+			<div id="progress_prot" class="progress">
+			  <div id="bar_prot" class="bar"></div>
+			</div>
+
+		</div>
+
+
+		<div id="" class="text_progress">2/200</div>
+		<div id="stat_prot">
+			<div id="label_prot" class="labels">Ж</div>
+			
+			<div id="progress_prot" class="progress">
+			  <div id="bar_prot" class="bar"></div>
+			</div>
+
+		</div>
+	
+
+
+		<div id="" class="text_progress">2/200</div>
+		<div id="stat_prot">
+			<div id="label_prot" class="labels">У</div>
+			
+			<div id="progress_prot" class="progress">
+			  <div id="bar_prot" class="bar"></div>
+			</div>
+
+		</div>
+
+
+		<div id="" class="text_progress">2/200</div>
+		<div id="stat_prot">
+			<div id="label_prot" class="labels">Кл</div>
+			
+			<div id="progress_prot" class="progress">
+			  <div id="bar_prot" class="bar"></div>
+			</div>
+
+		</div>
+
+
+		<div id="" class="text_progress">2/200</div>
+		<div id="stat_prot">
+			<div id="label_prot" class="labels">Ка</div>
+			
+			<div id="progress_prot" class="progress">
+			  <div id="bar_prot" class="bar"></div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<div class="page1">
+
+<!--
+			MEALS
+-->
+	<div id="meals">
+		<div id="table_meal" style="display: none;">
+			<div id="head_table_meal">
+				<div id="name_meal">Прием пищи</div>
+				<div id="time_meal"></div>
+				<div id="del_meal">x</div>
+			</div>
+			<div id="stat_meals">
+				<div id="prot_meal" class="elem_meal">Б</div>
+				<div id="fats_meal">Ж</div>
+				<div id="harb_meal">У</div>
+				<div id="cell_meal">Кл</div>
+				<div id="cal_meal">Ка</div>
+			</div>
+		</div>
+		<div class="announcement">Вы сегодня еще не заполняли приемы пищи. Нажмите +, чтобы добавить новый прием пищи.</div>
+		<div id="add_meal_button">+</div>
+	</div>
+
+</div>
+
+</body>
+</html>

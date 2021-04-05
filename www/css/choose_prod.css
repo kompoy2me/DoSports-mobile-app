@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+	padding: 0;
+	
+	width: 100vw;
+	height: 100vh;
+	color: #CCCCCC;
+}
+.page {
+	padding: 5%;
+}
+.inpt {
+	margin: 0 auto;
+	width: 90%;
+	border-bottom: 2px solid #CCCCCC;
+}
+.inp_field {
+	border: none;
+	background-color: #2F2F31;
+	width: 100%;
+	font-size: 12pt;
+	padding: 10px 0 10px 0;
+	color: #CCCCCC;
+	margin-top: 20px;
+
+}
+.inp_field:focus {
+	outline: none;
+	
+}
+.announcement {
+	text-align: center;
+	font-size: 10pt;
+	margin: 40px 0 30px 0;
+}
+#head_table_prod {
+	margin: 0 0 10px 8px;
+	font-size: 12pt;
+
+}
+#table_prod {
+	background-color: #161616;
+	padding: 15px 10px 15px 10px;
+	margin: 10px 0 10px 0;
+}
+#stat_prod {
+	display: flex;
+	justify-content: space-between;
+	font-size: 11pt;
+}
+#display {
+	margin-bottom: 50px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/create_meal.css">
+	<script src="js/change_page.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+  		$("#cancel").click(function(){
+  			 load_p("diary.html");
+  		})
+  		$("#add_prod_button").click(function(){
+  			 load_p("choose_prod.html");
+  		})
+	</script>
+	<div class="page">
+		
+		<div id="cancel">< Отмена</div>
+
+		<div id="sub">Сохранить</div>
+
+		 <div class="inpt">
+        	<input type="text" class="inp_field" id="name" placeholder="">
+      	</div>
+
+      	<div id="stat_meal">
+			<div id="prot_meal" class="elem_meal">Б</div>
+			<div id="fats_meal" class="elem_meal">Ж</div>
+			<div id="harb_meal" class="elem_meal">У</div>
+			<div id="cell_meal" class="elem_meal">Кл</div>
+			<div id="cal_meal" class="elem_meal">Ка</div>
+		</div>
+		<div class="announcement">Нажмите +, чтобы добавить продукты в ваш прием пищи.</div>
+
+		<div id="add_prod_button">+</div>
+
+	</div>
+</body>
+</html>
+

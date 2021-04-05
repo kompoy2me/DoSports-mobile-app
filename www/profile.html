@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+  			document.getElementById('login').innerHTML = window.localStorage.getItem("login");
+        document.getElementById('email').innerHTML = window.localStorage.getItem("email");
+
+        document.getElementById('height').innerHTML += window.localStorage.getItem("height") + " см";
+        document.getElementById('weight').innerHTML += window.localStorage.getItem("weight") + " кг";
+        document.getElementById('age').innerHTML += window.localStorage.getItem("age")+ " лет";
+
+
+  			$("#exit").click(function(){
+  				 window.localStorage.removeItem("login");
+  				 window.location.href = 'authorization.html';
+  			})
+
+        $("#edit").click(function(){
+           window.location.href = 'BMIcalculate.html';
+        })
+  		
+    </script>
+  </head>
+  <body>
+
+   
+    <div class="page">
+      <div class="table" id="table1">
+        <div id="usericon">
+          <img src="img/user.png" alt="" width="50" height="50">
+        </div>
+         
+        <div id="userdata">
+          <div id="login"></div>
+          <div id="email"></div>
+          <div id="exit">Выйти из аккаунта</div>
+        </div>
+      </div>
+
+      <div id="ad"></div>
+
+      <div class="table">
+        <div id="user_param">
+          <div id="weight" class="param">Вес<br></div>
+          <div id="height" class="param">Рост<br></div>
+          <div id="age" class="param">Возраст<br></div>
+        </div>
+        <div id="edit">Пересчитать индекс массы тела</div>
+      </div>
+
+    </div>
+  </body>
+</html>

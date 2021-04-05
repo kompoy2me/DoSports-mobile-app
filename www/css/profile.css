@@ -1,0 +1,83 @@
+body {
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+}
+.page {
+	background-color: #2F2F31;
+	color: #CCCCCC;
+	padding: 5%;
+	size: 14pt;
+	height: 100%;
+
+}
+/*
+.footer {
+	background-color: #E1E1E1;
+	height: 14vh;
+}
+*/
+
+#ad {
+	width: 100%;
+	height: 10vh;
+	border: 1px solid #E77817;
+	text-align: center;
+	padding-top: 20px;
+}
+.table {
+	padding: 30px 15px 30px 15px;
+	margin: 10px 0 10px 0;
+	background-color: #161616;
+}
+#table1 {
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+#login {
+
+}
+#email {
+
+}
+#exit {
+	color: #898989;
+	text-decoration: underline;
+	text-decoration-color: #898989;
+}
+#usericon {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	margin-right: 10px;
+}
+#userdata {
+	
+}
+
+#sub {
+	color: #898989;
+	text-decoration: underline;
+	text-decoration-color: #898989;
+}
+#user_param {
+	display: flex;
+	align-items: center;
+  	justify-content: space-around;
+
+}
+.param {
+	color: #E77817;
+	text-align: center;
+}
+#edit {
+	color: #898989;
+	margin-top: 30px;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: underline;
+	text-decoration-color: #898989;
+}

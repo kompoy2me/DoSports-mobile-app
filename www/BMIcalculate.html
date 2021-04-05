@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/BMI.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/calculation.js"></script>
+    <script src="js/calc_age.js"></script>
+    <meta charset="utf-8">
+    <script>
+      $(document).ready(function(){
+        $("#sub").click(function(){
+
+            var login = window.localStorage.getItem("login");
+            var height = $("#height").val();
+            var weight = $("#weight").val();
+
+            var age_day = $("#age_day").val();
+            var age_month = $("#age_month").val();
+            var age_year = $("#age_year").val();
+            var age = calculate_age(age_month,age_day,age_year);
+
+            var gender = $('input[name=gender]:checked').val();
+            var lifestyle = $('input[name=lifestyle]:checked').val();
+            
+            if ($.trim(height).length >0 & $.trim(weight).length >0 & $.trim(age).length >0 & $.trim(gender).length >0 & $.trim(lifestyle).length >0  ){
+                $.post( 
+                  "http://ds.graverx4.beget.tech/anotherMobileApp/insert_parameters.php", 
+                  { login:login, height:height, weight:weight, age:age, gender:gender, lifestyle:lifestyle })
+                  .done(function( data ) {
+                      window.localStorage.setItem("age", age);
+                      window.localStorage.setItem("height", height);
+                      window.localStorage.setItem("weight", weight);
+                      alert(data);
+                      BMI(age,weight,height,gender,lifestyle);
+                      window.location.href = 'footer.html';
+                  });
+            }
+            else {
+                alert("Заполните все пункты");
+            }
+        })
+      })
+    </script>
+  </head>
+  <body>
+      <div id="readme">Заполните свои параметры, чтобы приложение смогло рассчитать для вас ИМТ.</div>
+      <p>Ваш рост:</p>
+      <div class="inpt">
+        <input type="number" class="inp_field" id="height" placeholder="">
+        <div class="units">см</div>
+      </div>
+      <p class="titl">Ваш вес:</p>
+      <div class="inpt">
+        <input type="number" class="inp_field" id="weight" placeholder="">
+        <div class="units">кг</div>
+      </div>
+      <p class="titl">Ваш возраст:</p>
+      <div class="inpt">
+        <input type="number" class="inp_field_age" id="age_day" placeholder="">
+        <div class="units">д</div>
+        <input type="number" class="inp_field_age" id="age_month" placeholder="">
+        <div class="units">м</div>
+        <input type="number" class="inp_field_age" id="age_year" placeholder="">
+        <div class="units">г</div>
+      </div>
+   
+
+      <p class="titl">Ваш пол:</p>
+      <input type="radio" name="gender"  value="m">Мужской</p>
+      <input type="radio" name="gender"  value="f">Женский</p>
+
+      <p class="titl">Ваш образ жизни:</p>
+      <input type="radio" name="lifestyle"  value="1.3">Малоподвижный</p>
+      <input type="radio" name="lifestyle"  value="1.5">Умеренно активный</p>
+      <input type="radio" name="lifestyle"  value="1.6">Активный</p>
+      <input type="radio" name="lifestyle"  value="1.9">Очень активный</p>
+
+      <button id="sub" class="sub_butt">Рассчитать</button>
+  </body>
+</html>

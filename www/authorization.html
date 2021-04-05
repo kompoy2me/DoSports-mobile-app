@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/auth_reg.css">
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#gotoreg").click(function(){
+                    window.location.href = 'registration.html';
+                });
+
+
+                $("#sub").click(function(){                
+                    var login = $("#login").val();
+                    var password = $("#password").val();
+
+                    if($.trim(login).length >0 & $.trim(password).length >0) {
+                       $.post( 
+                        "http://ds.graverx4.beget.tech/anotherMobileApp/authorization.php", 
+                        { login:login, password:password })
+                          .done(function( data ) {
+                             //alert(data);
+                             if (data == null){
+                                alert("Неверно указан логин или пароль");
+                             }
+                             else {
+
+                                window.localStorage.setItem("login", data[0]);
+                                window.localStorage.setItem("email", data[1]);
+
+                                if (data[7]==null || data[9]=="0" || data[10]=="0" || data[11]=="0" || data[12]=="0") {
+                                    window.location.href = 'BMIcalculate.html';
+                                }
+                                else {   
+                                    window.localStorage.setItem("gender", data[7]);
+                                    window.localStorage.setItem("age", data[9]);
+                                    window.localStorage.setItem("height", data[10]);
+                                    window.localStorage.setItem("weight", data[11]);
+                                    window.localStorage.setItem("lifestyle", data[12]);
+                                    //console.log(window.localStorage.getItem("lifestyle"));
+
+                                    window.location.href = 'footer.html';
+                                }
+                             }
+                           });
+                    } 
+                    else {
+                        alert("Заполните все пустые поля!");
+                    }
+            })
+        })
+        </script>
+    </head>
+    <body>
+        <input type="text" class="input_field" id="login" placeholder="Логин или email">
+        <input type="password" id="password" class="input_field" placeholder="Пароль">
+        
+        <button id="sub" class="sub_butt">Войти</button>
+        
+           <div class="transition">Еще нет аккаунта? 
+            <div id="gotoreg" >Зарегистрируйтесь</div>
+        </div>
+    </body>
+</html>

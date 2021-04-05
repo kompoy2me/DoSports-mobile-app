@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/choose_prod.css">
+</head>
+<body>
+	<script type="text/javascript">
+  		$("#cancel").click(function(){
+  			 load_p("create_meal.html");
+  		})
+
+	  	$(document).ready(function() {
+	    	$("#name").keyup(function() {
+	    		
+		        var name = $('#name').val();
+
+		        if (name === "") {
+			            $("#display").html("");
+			        }
+			        else {
+			        	
+			 			$.post( 
+                        "http://ds.graverx4.beget.tech/anotherMobileApp/search_prod.php", 
+                        { search:name})
+                          .done(function( data ) {
+                          	 $("#display").html(data).show();
+                          })
+			 
+			        }	
+	 
+	    	});
+	 
+	});
+	 
+	function fill(Value) {
+	    $('#search').val(Value); // Берем значение элемента из результата поиска и добавляем его в значение поля поиска
+	    $('#display').hide(); // Скрываем результаты поиска
+	 
+	}
+	</script>
+	<div class="page">
+		
+		<div id="cancel">< Отмена</div>
+
+		 <div class="inpt">
+        	<input type="text" class="inp_field" id="name" placeholder="">
+      	</div>
+
+		<div class="announcement">Введите название продукта...</div>
+		<div id="display"></div>
+	</div>
+</body>
+</html>

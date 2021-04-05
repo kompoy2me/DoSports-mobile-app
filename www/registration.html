@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/auth_reg.css">
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+
+                $("#gotoauth").click(function(){
+                    window.location.href = 'authorization.html';
+                });
+
+                $("#sub").click(function(){
+
+                    var email = $("#email").val();
+                    var login = $("#login").val();
+                    var password = $("#password").val();
+ 
+
+                    if ($.trim(email).length >0 & $.trim(login).length >0 & $.trim(password).length >0) {
+
+                        var re = /\S+@\S+\.\S+/;
+                        if (!re.test(email)) {
+                            alert("Укажите корректный Email");
+                        }
+                        else {
+                            if ($.trim(password).length < 6) {
+                                alert("Пароль должен содержать не менее 6 символов")
+                            }
+                            else {
+                                $.post( 
+                                "http://ds.graverx4.beget.tech/anotherMobileApp/registration.php", 
+                                { email:email, login:login, password:password })
+                                .done(function( data ) {
+            
+                                    if (data == login) {
+                                        alert("Пользователь " + login + " зарегистрирован");
+                                        window.location.href = 'authorization.html';
+                                    }
+                                    else {
+                                        if (data == "logErr") {
+                                            alert("Пользователь с таким логином уже существует!");
+                                        }
+                                        if (data == "emailErr") {
+                                            alert("Данный почтовый адрес занят!");
+                                        }
+
+                                    }
+                                    
+                                    
+                                });
+                            }
+
+                        }
+
+                    
+                    } 
+                    else {
+                        alert("Заполните все пустые поля!");
+                    }
+            })
+        })
+        </script>
+    </head>
+    <body>
+        <input type="email" class="input_field" id="email" placeholder="Email">
+        <input type="text" class="input_field" id="login" placeholder="Логин">
+        <input type="password" class="input_field" id="password" placeholder="Пароль">
+        
+        <button id="sub" class="sub_butt" >Зарегистрироваться</button>
+        <div class="transition">Уже есть аккаунт? 
+            <div id="gotoauth">Войдите</div>
+        </div>
+    </body>
+</html>

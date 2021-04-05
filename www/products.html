@@ -1,0 +1,54 @@
+<html>
+    <head>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $("#sub").click(function(){
+                    
+                    $.ajax({
+                        url: "http://ds.graverx4.beget.tech/mobileServer.php",
+                        dataType: "json",
+                        success: function(data){ 
+                            console.log(data);
+                            document.getElementById('text').innerHTML = data;                            
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                         console.log(textStatus, errorThrown);
+                         document.getElementById('holder').style.backgroundColor = "red";
+                      }
+                    }); 
+
+               /* 
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                if($.trim(firstname).length >0 & $.trim(lastname).length >0) {
+                   $.post( 
+                    "http://ds.graverx4.beget.tech/mobileServer.php", 
+                    { firstname:firstname, lastname:lastname })
+                      .done(function( data ) {
+                        // alert(data);
+//________________УБРАТЬ АДБЛОК ДЛЯ БРАУЗЕРА
+                         document.getElementById('text').innerHTML = data;
+                      });
+                } 
+                else {
+                    //alert("Input fields are empty");
+                    document.getElementById('text').innerHTML = "Input fields are empty";
+                }
+                */
+            })
+        })
+        </script>
+    </head>
+    <body>
+
+        <div id = "holder" style="background-color: green; display: flex; align-items: center; justify-content: center;">
+            <button id="sub" style="padding: 17px; margin: 60px 0 20px 0;">Жми сюд</button>
+        </div>
+
+        <div id="text" >...</div>
+
+    </body>
+</html>
