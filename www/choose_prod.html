@@ -2,6 +2,7 @@
 <html>
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/add_prod_to_diary.js"></script>
 	<link rel="stylesheet" href="css/choose_prod.css">
 </head>
 <body>
@@ -11,6 +12,12 @@
   		})
 
 	  	$(document).ready(function() {
+
+	  		$("#cancel_m").click(function(){
+	  			document.getElementById('modal').style.display = 'none';
+	  		});  
+
+
 	    	$("#name").keyup(function() {
 	    		
 		        var name = $('#name').val();
@@ -24,7 +31,24 @@
                         "http://ds.graverx4.beget.tech/anotherMobileApp/search_prod.php", 
                         { search:name})
                           .done(function( data ) {
-                          	 $("#display").html(data).show();
+                          	document.getElementById('display').innerHTML = "";
+                          	data.forEach(function(prod) {
+                          		add_to(prod[0],prod[1], prod[2], prod[3], prod[4], prod[5]);
+                          	});
+                          	/*let arr = new Array();
+                          	data.forEach(function(prod) {
+							    arr.push('<div id="table_prod" onclick="add_to()"><div id="head_table_prod"><div id="name_prod">'+
+							    	prod[0] + '</div></div><div id="stat_prod"><div id="prot_prod" class="elem_prod">Б ' +
+							    	prod[1]+'</div><div id="fats_prod">Ж '+
+							    	prod[2]+'</div><div id="harb_prod">У '+
+							    	prod[3]+'</div><div id="cell_prod">Кл '+
+							    	prod[4]+'</div><div id="cal_prod">Ка '+
+							    	prod[5]+'</div></div></div>');
+							});
+
+                          	$("#display").html(arr).show();*/
+                          	
+                          	 
                           })
 			 
 			        }	
@@ -34,8 +58,8 @@
 	});
 	 
 	function fill(Value) {
-	    $('#search').val(Value); // Берем значение элемента из результата поиска и добавляем его в значение поля поиска
-	    $('#display').hide(); // Скрываем результаты поиска
+	    $('#search').val(Value); 
+	    $('#display').hide(); 
 	 
 	}
 	</script>
@@ -49,6 +73,30 @@
 
 		<div class="announcement">Введите название продукта...</div>
 		<div id="display"></div>
+
+		<div id="modal">
+			
+			<div  id="announ_m">Укажите количество продукта</div>
+				
+			<div class="inpt_m">
+				
+        		<input type="number" class="inp_field" id="quant" placeholder="">
+        		<div class="units" >гр</div>
+      		</div>
+      		<div id="stat_prod">
+				<div id="prot_count" class="elem_meal">Б</div>
+				<div id="fats_count" class="elem_meal">Ж</div>
+				<div id="harb_count" class="elem_meal">У</div>
+				<div id="cell_count" class="elem_meal">Кл</div>
+				<div id="cal_count" class="elem_meal">Ка</div>
+			
+			</div>
+			<div id="buttons">
+				<button id="cancel_m" class="canc_butt">Отмена</button>
+				<button id="sub" class="sub_butt">Принять</button>
+			</div>
+			
+		</div>
 	</div>
 </body>
 </html>
