@@ -28,6 +28,13 @@
                                 window.localStorage.setItem("login", data[0]);
                                 window.localStorage.setItem("email", data[1]);
 
+                                var arr = [];
+                                window.localStorage.setItem("DIARY_ARRAY", JSON.stringify(arr));
+                                window.localStorage.setItem("ID_PROD", 0);
+                                window.localStorage.setItem("ID_DAY", 0);
+                                window.localStorage.setItem("ID_MEAL", 0);                       
+                                window.localStorage.setItem("DAY_DATE", "01.01.2021"); 
+
                                 if (data[7]==null || data[9]=="0" || data[10]=="0" || data[11]=="0" || data[12]=="0") {
                                     window.location.href = 'BMIcalculate.html';
                                 }

@@ -10,8 +10,97 @@
 <body>
 
 	<script type="text/javascript">
+/*
+		ОТОБРАЖЕНИЕ ЗАПИСЕЙ ПО ИНДЕКСУ ПРИЕМА ПИЩИ
+*/
+		function write_tab(meal, prot, fats, harb, cell, cal){
+			let main = document.getElementById('display');
+
+	        let table = document.createElement('div');
+	  		table.id = "table_meal";
+
+	  		table.onclick = function(){
+	  			alert('clicked');
+	  		};
+
+	  		let table_head = document.createElement('div');
+	  		table_head.id = "head_table_meal";
+
+	  		let name_time = document.createElement('div');
+	  		name_time.id = "name_time";
+
+	  		let prod_name = document.createElement('div');
+	  		prod_name.id = "prod_name";
+	  		prod_name.innerHTML = "Прием пищи";
+
+	  		let time = document.createElement('div');
+	  		time.id = "time_meal";
+	  		time.innerHTML = meal[4];
+
+	  		let del = document.createElement('div');
+	  		del.id = "delete_meal";
+	  		del.innerHTML = 'x';
+	  		del.onclick = function(){
+	  			alert('delete!');
+	  			/*arr.splice(arr.indexOf(prod), 1);
+	  			localStorage.setItem('array_prods',JSON.stringify(arr));
+	  			table.style.display = 'none';*/
+	  		};
+
+         	main.append(table);
+          	table.append(table_head);
+          	table_head.append(name_time);
+          	name_time.append(prod_name);
+          	name_time.append(time);          	
+          	table_head.append(del);
+
+            table.insertAdjacentHTML('beforeend', '<div id="stat_meal1" class="stats"><div id="prot_prod" class="elem_prod">Б ' + 
+              prot +'</div><div id="fats_prod">Ж '+ 
+              fats +'</div><div id="harb_prod">У '+ 
+              harb +'</div></div><div id="stat_meal2" class="stats"><div id="cell_prod">Кл '+ 
+              cell +'</div><div id="cal_prod">Ка '+ 
+              cal +'</div></div>');
+
+		};
+/*
+		ГРУППИРОВКА ПАРАМЕТРОВ ПО ИНДЕКСУ ПРИЕМА ПИЩИ
+*/
+		var arr = JSON.parse(localStorage.getItem('DIARY_ARRAY'));
+		var meal_id = arr[0][2];
+		prot = 0;
+		fats = 0;
+		harb = 0;
+		cell = 0;
+		cal = 0;
+		arr.forEach(function(meal, index, array) {
+			if (meal_id != meal[2])  {
+				console.log(prot +"	"+ fats + "	"+harb+"	"+cell+"	"+cal);
+				write_tab(meal, prot, fats, harb, cell, cal);
+				prot = 0;
+				fats = 0;
+				harb = 0;
+				cell = 0;				
+				cal = 0;
+				meal_id = meal[2];
+			}
+			//console.log('meal[2]: '+meal[2]+'; meal_id: '+meal_id);
+			prot += meal[7];
+			fats += meal[8];
+			harb += meal[9];
+			cell += meal[10];				
+			cal += meal[11];
+		    
+		});
+		write_tab(arr[arr.length-1], prot, fats, harb, cell, cal);
+		console.log(prot +"	"+ fats + "	"+harb+"	"+cell+"	"+cal);
+/*
+		ГРУППИРОВКА ПАРАМЕТРОВ ПО ИНДЕКСУ ПРИЕМА ПИЩИ END
+*/		
+		
   		$("#add_meal_button").click(function(){
-  			 load_p("create_meal.html");
+  			var arr = [];
+  			localStorage.setItem('array_prods',JSON.stringify(arr));
+  			load_p("create_meal.html");
   		})
 	</script>
 
@@ -104,21 +193,9 @@
 			MEALS
 -->
 	<div id="meals">
-		<div id="table_meal" style="display: none;">
-			<div id="head_table_meal">
-				<div id="name_meal">Прием пищи</div>
-				<div id="time_meal"></div>
-				<div id="del_meal">x</div>
-			</div>
-			<div id="stat_meals">
-				<div id="prot_meal" class="elem_meal">Б</div>
-				<div id="fats_meal">Ж</div>
-				<div id="harb_meal">У</div>
-				<div id="cell_meal">Кл</div>
-				<div id="cal_meal">Ка</div>
-			</div>
-		</div>
+		
 		<div class="announcement">Вы сегодня еще не заполняли приемы пищи. Нажмите +, чтобы добавить новый прием пищи.</div>
+		<div id="display"></div>
 		<div id="add_meal_button">+</div>
 	</div>
 

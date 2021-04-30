@@ -13,6 +13,11 @@
         document.getElementById('weight').innerHTML += window.localStorage.getItem("weight") + " кг";
         document.getElementById('age').innerHTML += window.localStorage.getItem("age")+ " лет";
 
+        document.getElementById('test').innerHTML = "ID_DAY: " +
+                      window.localStorage.getItem("ID_DAY") + "<br>ID_MEAL: " +
+                      window.localStorage.getItem("ID_MEAL") + "<br>ID_PROD: " +
+                      window.localStorage.getItem("ID_PROD") +  "<br>DIARY_ARRAY: " +
+                      window.localStorage.getItem("DIARY_ARRAY");
 
   			$("#exit").click(function(){
   				 window.localStorage.removeItem("login");
@@ -50,6 +55,7 @@
           <div id="age" class="param">Возраст<br></div>
         </div>
         <div id="edit">Пересчитать индекс массы тела</div>
+        <div id="test"></div>
       </div>
 
     </div>

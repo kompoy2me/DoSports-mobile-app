@@ -7,11 +7,128 @@
 <body>
 	<script type="text/javascript">
   		$("#cancel").click(function(){
-  			 load_p("diary.html");
+  			window.localStorage.removeItem('name_of_meal');
+  			window.localStorage.removeItem('array_prods');
+  			load_p("diary.html");
   		})
   		$("#add_prod_button").click(function(){
-  			 load_p("choose_prod.html");
+  			var name = $("#name").val();
+  			localStorage.setItem('name_of_meal', name);
+  			load_p("choose_prod.html");
   		})
+/*
+			CREATING DIARY
+*/
+  		$("#sub").click(function(){
+
+  			
+			var curr_date = new Date();
+			if (curr_date.toLocaleDateString() != localStorage.getItem('DAY_DATE')) {
+				var id_day = Number(localStorage.getItem('ID_DAY'));
+				id_day += 1;
+				//ДОЛЖНА БЫЬТЬ ПРОВЕРКА НА 30 ДНЕЙ
+				localStorage.setItem('ID_DAY', id_day);
+				localStorage.setItem('DAY_DATE', curr_date.toLocaleDateString());
+			};
+			
+
+  		var id_meal = Number(localStorage.getItem('ID_MEAL'));
+			id_meal += 1;
+			localStorage.setItem('ID_MEAL', id_meal);
+  			
+  		var prods = JSON.parse(localStorage.getItem('array_prods'));
+  		prods.forEach(function(prod) {
+
+  			var id_prod = Number(localStorage.getItem('ID_PROD'));
+				id_prod += 1;
+				localStorage.setItem('ID_PROD', id_prod);
+
+				var now = new Date().toLocaleTimeString();
+
+  				var diary = [
+  						localStorage.getItem('ID_PROD'),
+  						localStorage.getItem('ID_DAY'),
+  						localStorage.getItem('ID_MEAL'),
+  						localStorage.getItem('DAY_DATE'),
+  						now,
+  						prod[0][0],//   NAME
+  						prod[0][6],//		QUANTITY
+  						prod[0][1],//   Б
+  						prod[0][2],//   Ж
+  						prod[0][3],//   У
+  						prod[0][4],//   КЛ
+  						prod[0][5],//   КА
+  				];
+  				console.log(diary);
+
+  				var arr = JSON.parse(localStorage.getItem('DIARY_ARRAY'));
+				arr.push(diary);
+				console.log(arr);
+				localStorage.setItem('DIARY_ARRAY',JSON.stringify(arr));
+	  			
+
+  				window.localStorage.removeItem('name_of_meal');
+  				load_p("diary.html");
+  			});
+  		});
+/*
+			CREATING DIARY END
+*/
+  		
+  		if (localStorage.getItem('name_of_meal') != null){
+  			document.getElementById('name').value = localStorage.getItem('name_of_meal');
+  		}
+  		else{
+  			document.getElementById('name').value = 'Прием пищи';
+  		};
+  		
+  		var arr = [];
+  		//console.log(localStorage.getItem('array_prods'));
+  		//console.log(JSON.parse(localStorage.getItem('array_prods')));
+  		arr = JSON.parse(localStorage.getItem('array_prods'));
+  		
+      arr.forEach(function(prod) {
+        main = document.getElementById('display');
+        	
+        let table = document.createElement('div');
+  			table.id = "table_prod";
+
+
+  			let table_head = document.createElement('div');
+  			table_head.id = "head_table_prod";
+
+        let quant_prod = document.createElement('div');
+        quant_prod.id = "quant_prod";
+        quant_prod.innerHTML = prod[0][6] + " гр";
+
+  			let prod_name = document.createElement('div');
+  			prod_name.id = "prod_name";
+  			prod_name.innerHTML = prod[0][0];
+
+  			let del = document.createElement('div');
+  			del.id = "delete_prod";
+  			del.innerHTML = 'x';
+  			del.onclick = function(){
+  				arr.splice(arr.indexOf(prod), 1);
+  				localStorage.setItem('array_prods',JSON.stringify(arr));
+  				table.style.display = 'none';
+  			};
+          	main.append(table);
+          	table.append(table_head);
+          	table_head.append(prod_name);
+            prod_name.append(quant_prod);
+          	table_head.append(del);
+           
+
+            table.insertAdjacentHTML('beforeend', '<div id="stat_prod1" class="stats"><div id="prot_prod" class="elem_prod">Б ' + 
+              prod[0][1]+'</div><div id="fats_prod">Ж '+ 
+              prod[0][2]+'</div><div id="harb_prod">У '+ 
+              prod[0][3]+'</div></div><div id="stat_prod2" class="stats"><div id="cell_prod">Кл '+ 
+              prod[0][4]+'</div><div id="cal_prod">Ка '+ 
+              prod[0][5]+'</div></div>');
+        });
+  			
+  	
 	</script>
 	<div class="page">
 		
@@ -19,19 +136,21 @@
 
 		<div id="sub">Сохранить</div>
 
-		 <div class="inpt">
+		<div class="inpt">
         	<input type="text" class="inp_field" id="name" placeholder="">
-      	</div>
+    </div>
+		
 
-      	<div id="stat_meal">
-			<div id="prot_meal" class="elem_meal">Б</div>
-			<div id="fats_meal" class="elem_meal">Ж</div>
-			<div id="harb_meal" class="elem_meal">У</div>
-			<div id="cell_meal" class="elem_meal">Кл</div>
-			<div id="cal_meal" class="elem_meal">Ка</div>
-		</div>
-		<div class="announcement">Нажмите +, чтобы добавить продукты в ваш прием пищи.</div>
+      <div id="stat_meal">
+      <div id="prot_meal" class="elem_meal">Б</div>
+      <div id="fats_meal" class="elem_meal">Ж</div>
+      <div id="harb_meal" class="elem_meal">У</div>
+      <div id="cell_meal" class="elem_meal">Кл</div>
+      <div id="cal_meal" class="elem_meal">Ка</div>
+    </div>
 
+    <div class="announcement">Нажмите +, чтобы добавить продукты в ваш прием пищи.</div>
+		<div id="display"></div>
 		<div id="add_prod_button">+</div>
 
 	</div>

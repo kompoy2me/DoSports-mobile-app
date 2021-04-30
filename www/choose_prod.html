@@ -11,8 +11,6 @@
   			 load_p("create_meal.html");
   		})
 
-	  	$(document).ready(function() {
-
 	  		$("#cancel_m").click(function(){
 	  			document.getElementById('modal').style.display = 'none';
 	  		});  
@@ -35,27 +33,13 @@
                           	data.forEach(function(prod) {
                           		add_to(prod[0],prod[1], prod[2], prod[3], prod[4], prod[5]);
                           	});
-                          	/*let arr = new Array();
-                          	data.forEach(function(prod) {
-							    arr.push('<div id="table_prod" onclick="add_to()"><div id="head_table_prod"><div id="name_prod">'+
-							    	prod[0] + '</div></div><div id="stat_prod"><div id="prot_prod" class="elem_prod">Б ' +
-							    	prod[1]+'</div><div id="fats_prod">Ж '+
-							    	prod[2]+'</div><div id="harb_prod">У '+
-							    	prod[3]+'</div><div id="cell_prod">Кл '+
-							    	prod[4]+'</div><div id="cal_prod">Ка '+
-							    	prod[5]+'</div></div></div>');
-							});
-
-                          	$("#display").html(arr).show();*/
-                          	
-                          	 
+                         	 
                           })
 			 
 			        }	
 	 
 	    	});
-	 
-	});
+	 	
 	 
 	function fill(Value) {
 	    $('#search').val(Value); 
@@ -78,22 +62,25 @@
 			
 			<div  id="announ_m">Укажите количество продукта</div>
 				
-			<div class="inpt_m">
+			<div class="inpt_m" id="quant_prod">
 				
         		<input type="number" class="inp_field" id="quant" placeholder="">
         		<div class="units" >гр</div>
       		</div>
-      		<div id="stat_prod">
+      		<div id="stat_prod1" class="stats">
 				<div id="prot_count" class="elem_meal">Б</div>
 				<div id="fats_count" class="elem_meal">Ж</div>
 				<div id="harb_count" class="elem_meal">У</div>
+						
+			</div>
+			<div id="stat_prod2" class="stats">
 				<div id="cell_count" class="elem_meal">Кл</div>
 				<div id="cal_count" class="elem_meal">Ка</div>
 			
 			</div>
 			<div id="buttons">
 				<button id="cancel_m" class="canc_butt">Отмена</button>
-				<button id="sub" class="sub_butt">Принять</button>
+				<button id="sub_m" class="sub_butt">Принять</button>
 			</div>
 			
 		</div>

@@ -9,6 +9,22 @@ body {
 .page {
 	padding: 5%;
 }
+#modal {
+	display: none;
+	position: fixed; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+    width: 85vw;
+    height: 350px;
+    margin: 20vh auto;
+    vertical-align: middle;
+    background-color: #2F2F31;
+    opacity: 0;
+    
+}
 .inpt {
 	margin: 0 auto;
 	width: 90%;
@@ -55,39 +71,32 @@ body {
 	margin: 10px 0 10px 0;
 }
 
-#stat_prod {
+.stats {
 	display: flex;
 	justify-content: space-between;
 	font-size: 11pt;
+	margin: 10px 20px 0 20px;
+}
+#stat_prod{
+	display: flex;
+	justify-content: space-between;
+	font-size: 11pt;
+	margin: 20px 8px 0 8px;
+}
+#stat_prod2{
+	justify-content: space-around;
 }
 #display {
 	margin-bottom: 50px;
 }
-#modal {
-	position: fixed; 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1050;
-    width: 85vw;
-    height: 300px;
-    margin: 20vh auto;
-    vertical-align: middle;
-    background-color: #2F2F31;
 
-    display: none;
-}
-#stat_prod {
-	margin: 20px 8px 0 8px;
 
-}
 #buttons {
 	display: flex;
 	align-items: center;
   	justify-content: space-around;
 }
-#sub {
+#sub_m {
 	background-color: #E77817;
 	
 	font-size: 12pt;
