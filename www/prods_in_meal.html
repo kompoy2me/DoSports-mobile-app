@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/prods_in_meal.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		$("#cancel").click(function(){
+//  			window.localStorage.removeItem('name_of_meal');
+  			load_p("diary.html");
+  		})
+  		var display = document.getElementById('display');
+  		var meal_index = localStorage.getItem('meal_index');
+  		var arr = JSON.parse(localStorage.getItem('DIARY_ARRAY'));
+  		display.innerHTML = arr[meal_index][4];
+
+		for (let i = meal_index; i < arr.length; i++) {
+			if (arr[i][2] != arr[meal_index][2]){
+				break
+			} 
+			
+
+			let table = document.createElement('div');
+  			table.id = "table_prod";
+
+
+  			let table_head = document.createElement('div');
+  			table_head.id = "head_table_prod";
+
+	        let quant_prod = document.createElement('div');
+	        quant_prod.id = "quant_prod";
+	        quant_prod.innerHTML = arr[i][6] + " гр";
+
+  			let prod_name = document.createElement('div');
+  			prod_name.id = "prod_name";
+  			prod_name.innerHTML = arr[i][5];
+
+  			let del = document.createElement('div');
+  			del.id = "delete_prod";
+  			del.innerHTML = 'x';
+  			del.onclick = function(){
+  				alert('delete');
+  				//arr.splice(arr.indexOf(prod), 1);
+  				//localStorage.setItem('array_prods',JSON.stringify(arr));
+  				//table.style.display = 'none';
+  			};
+          	display.append(table);
+          	table.append(table_head);
+          	table_head.append(prod_name);
+            prod_name.append(quant_prod);
+          	table_head.append(del);
+           
+
+            table.insertAdjacentHTML('beforeend', '<div id="stat_prod1" class="stats"><div id="prot_prod" class="elem_prod">Б ' + 
+              arr[i][7]+'</div><div id="fats_prod">Ж '+ 
+              arr[i][8]+'</div><div id="harb_prod">У '+ 
+              arr[i][9]+'</div></div><div id="stat_prod2" class="stats"><div id="cell_prod">Кл '+ 
+              arr[i][10]+'</div><div id="cal_prod">Ка '+ 
+              arr[i][11]+'</div></div>');
+      
+
+		};
+
+	</script>
+
+	<div class="page">
+		<div id="cancel">< Отмена</div>
+		<div id="display"></div>
+	</div>
+	
+</body>
+</html>
