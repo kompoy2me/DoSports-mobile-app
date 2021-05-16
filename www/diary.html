@@ -4,122 +4,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/diary.css">
 	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-	<script src="js/testDB.js"></script>-->
+	-->
+	<script src="js/progress_bar_update.js"></script>
+	<script src="js/prods_into_meal.js"></script>
 	<script src="js/change_page.js"></script>
+	
 </head>
 <body>
 
 	<script type="text/javascript">
 /*
-		ОТОБРАЖЕНИЕ ЗАПИСЕЙ ПО ИНДЕКСУ ПРИЕМА ПИЩИ
-*/
-		function write_tab(meal_index, meal_time, prot, fats, harb, cell, cal){
-			var arr = JSON.parse(localStorage.getItem('DIARY_ARRAY'));
-			var prods = "";
-			var prods_count = 0;
-			
-			for (let i = meal_index; i < arr.length; i++) {
-				if (arr[i][2] != arr[meal_index][2]){
-					break
-				} 
-				prods_count += 1;
-				prods += arr[i][5];
-			};
-
-			let main = document.getElementById('display');
-
-	        let table = document.createElement('div');
-	  		table.id = "table_meal";
-
-	  		let table_head = document.createElement('div');
-	  		table_head.id = "head_table_meal";
-
-	  		let name_time = document.createElement('div');
-	  		name_time.id = "name_time";
-
-	  		name_time.onclick = function(){
-	  			alert(prods);
-	  			localStorage.setItem("meal_index", meal_index);
-	  			load_p("prods_in_meal.html");
-	  		};
-
-	  		let prod_name = document.createElement('div');
-	  		prod_name.id = "prod_name";
-	  		prod_name.innerHTML = "Прием пищи";
-
-	  		let time = document.createElement('div');
-	  		time.id = "time_meal";
-	  		time.innerHTML = meal_time;
-
-	  		let del = document.createElement('div');
-	  		del.id = "delete_meal";
-	  		del.innerHTML = 'x';
-	  		del.onclick = function(){
-	  			alert('delete!');
-	  			arr.splice(meal_index, prods_count);
-	  			localStorage.setItem('DIARY_ARRAY',JSON.stringify(arr));
-	  			table.style.display = 'none';
-	  		};
-
-         	main.append(table);
-          	table.append(table_head);
-          	table_head.append(name_time);
-          	name_time.append(prod_name);
-          	name_time.append(time);          	
-          	table_head.append(del);
-
-            table.insertAdjacentHTML('beforeend', '<div id="stat_meal1" class="stats"><div id="prot_prod" class="elem_prod">Б ' + 
-              prot +'</div><div id="fats_prod">Ж '+ 
-              fats +'</div><div id="harb_prod">У '+ 
-              harb +'</div></div><div id="stat_meal2" class="stats"><div id="cell_prod">Кл '+ 
-              cell +'</div><div id="cal_prod">Ка '+ 
-              cal +'</div></div>');
-
-		};
-/*
-		ГРУППИРОВКА ПАРАМЕТРОВ ПО ИНДЕКСУ ПРИЕМА ПИЩИ
-*/
-		var arr = JSON.parse(localStorage.getItem('DIARY_ARRAY'));
-		alert(arr.length);
-		if (arr.length > 0){
-			alert('!');
-			var meal_id = arr[0][2];
-			var meal_time = arr[0][4]
-			var index_meal = 0;
-			prot = 0;
-			fats = 0;
-			harb = 0;
-			cell = 0;
-			cal = 0;
-			arr.forEach(function(meal, index, array) {
-				if (meal_id != meal[2])  {
-					//console.log(prot +"	"+ fats + "	"+harb+"	"+cell+"	"+cal);
-					//alert(arr.indexOf(meal));
-					write_tab(index_meal, meal_time, prot, fats, harb, cell, cal);
-					prot = 0;
-					fats = 0;
-					harb = 0;
-					cell = 0;				
-					cal = 0;
-					meal_time = meal[4]
-					meal_id = meal[2];
-					index_meal = arr.indexOf(meal);
-				}
-				//console.log('meal[2]: '+meal[2]+'; meal_id: '+meal_id);
-				prot += meal[7];
-				fats += meal[8];
-				harb += meal[9];
-				cell += meal[10];				
-				cal += meal[11];
-			    
-			});
-			write_tab(index_meal, meal_time, prot, fats, harb, cell, cal);
-			console.log(prot +"	"+ fats + "	"+harb+"	"+cell+"	"+cal);
-		};
-/*
-		ГРУППИРОВКА ПАРАМЕТРОВ ПО ИНДЕКСУ ПРИЕМА ПИЩИ END
+			MAIN
 */		
-		
+		group_prods(localStorage.getItem('DAY_DATE'));
+		update_bar();
+/*
+			MAIN
+*/
   		$("#add_meal_button").click(function(){
   			var arr = [];
   			localStorage.setItem('array_prods',JSON.stringify(arr));
@@ -152,7 +53,7 @@
 -->
 	<div id="statistics">
 
-		<div id="" class="text_progress">2/200</div>
+		<div id="text_prot" class="text_progress">2/200</div>
 		<div id="stat_prot">
 			<div id="label_prot" class="labels">Б</div>
 			
@@ -163,46 +64,46 @@
 		</div>
 
 
-		<div id="" class="text_progress">2/200</div>
-		<div id="stat_prot">
-			<div id="label_prot" class="labels">Ж</div>
+		<div id="text_fat" class="text_progress">2/200</div>
+		<div id="stat_fat">
+			<div id="label_fat" class="labels">Ж</div>
 			
-			<div id="progress_prot" class="progress">
-			  <div id="bar_prot" class="bar"></div>
+			<div id="progress_fat" class="progress">
+			  <div id="bar_fat" class="bar"></div>
 			</div>
 
 		</div>
 	
 
 
-		<div id="" class="text_progress">2/200</div>
-		<div id="stat_prot">
-			<div id="label_prot" class="labels">У</div>
+		<div id="text_carb" class="text_progress">2/200</div>
+		<div id="stat_carb">
+			<div id="label_carb" class="labels">У</div>
 			
-			<div id="progress_prot" class="progress">
-			  <div id="bar_prot" class="bar"></div>
+			<div id="progress_carb" class="progress">
+			  <div id="bar_carb" class="bar"></div>
 			</div>
 
 		</div>
 
 
-		<div id="" class="text_progress">2/200</div>
-		<div id="stat_prot">
-			<div id="label_prot" class="labels">Кл</div>
+		<div id="text_cell" class="text_progress">2/200</div>
+		<div id="stat_cell">
+			<div id="label_cell" class="labels">Кл</div>
 			
-			<div id="progress_prot" class="progress">
-			  <div id="bar_prot" class="bar"></div>
+			<div id="progress_cell" class="progress">
+			  <div id="bar_cell" class="bar"></div>
 			</div>
 
 		</div>
 
 
-		<div id="" class="text_progress">2/200</div>
-		<div id="stat_prot">
-			<div id="label_prot" class="labels">Ка</div>
+		<div id="text_cal" class="text_progress">2/200</div>
+		<div id="stat_cal">
+			<div id="label_cal" class="labels">Ка</div>
 			
-			<div id="progress_prot" class="progress">
-			  <div id="bar_prot" class="bar"></div>
+			<div id="progress_cal" class="progress">
+			  <div id="bar_cal" class="bar"></div>
 			</div>
 
 		</div>

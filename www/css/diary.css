@@ -33,6 +33,18 @@ body {
 #stat_prot {
 	display: flex;
 }
+#stat_fat {
+	display: flex;
+}
+#stat_cell {
+	display: flex;
+}
+#stat_carb {
+	display: flex;
+}
+#stat_cal {
+	display: flex;
+}
 .text_progress {
 	text-align: right;
 	margin-right: 20px;

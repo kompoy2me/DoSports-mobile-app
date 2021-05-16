@@ -13,11 +13,19 @@
         document.getElementById('weight').innerHTML += window.localStorage.getItem("weight") + " кг";
         document.getElementById('age').innerHTML += window.localStorage.getItem("age")+ " лет";
 
-        document.getElementById('test').innerHTML = "ID_DAY: " +
-                      window.localStorage.getItem("ID_DAY") + "<br>ID_MEAL: " +
-                      window.localStorage.getItem("ID_MEAL") + "<br>ID_PROD: " +
-                      window.localStorage.getItem("ID_PROD") +  "<br>DIARY_ARRAY: " +
-                      window.localStorage.getItem("DIARY_ARRAY");
+        document.getElementById('test').innerHTML = 
+                      "BMI: " +
+                      "<br>cal_norm: " + window.localStorage.getItem("cal_norm") + 
+                      "<br>prot_norm: " + window.localStorage.getItem("prot_norm") + 
+                      "<br>fat_norm: " + window.localStorage.getItem("fat_norm") + 
+                      "<br>carb_norm: " + window.localStorage.getItem("carb_norm") +
+                      "<br>cell_norm: " + window.localStorage.getItem("cell_norm") +  
+                      
+                      "ID_DAY: " + window.localStorage.getItem("ID_DAY") +
+                      "<br>ID_MEAL: " + window.localStorage.getItem("ID_MEAL") + 
+                      "<br>ID_PROD: " + window.localStorage.getItem("ID_PROD") + 
+                      "<br>DAY_DATE: " + window.localStorage.getItem("DAY_DATE") +  
+                      "<br>DIARY_ARRAY: " + window.localStorage.getItem("DIARY_ARRAY");
 
   			$("#exit").click(function(){
   				 window.localStorage.removeItem("login");
