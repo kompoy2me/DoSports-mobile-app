@@ -37,11 +37,11 @@ function write_tab(date_filter, meal_index, meal_date, meal_time, prot, fats, ha
 
 		  		let prod_name = document.createElement('div');
 		  		prod_name.id = "prod_name";
-		  		prod_name.innerHTML = "Прием пищи" + meal_date;
+		  		prod_name.innerHTML = "Прием пищи " + meal_time.substr(0, 5);
 
 		  		let time = document.createElement('div');
 		  		time.id = "time_meal";
-		  		time.innerHTML = meal_time;
+		  		time.innerHTML = meal_time.substr(0, 5) ;
 
 		  		let del = document.createElement('div');
 		  		del.id = "delete_meal";
@@ -55,12 +55,19 @@ function write_tab(date_filter, meal_index, meal_date, meal_time, prot, fats, ha
 		  			update_bar();
 
 		  		};
+		  		if (date_filter == "all"){
+		  			let date_date = document.createElement('div');
+		  			date_date.id = "date_date";
+		  			date_date.innerHTML =  meal_date;
+		  			
+		  			 main.append(date_date);
+		  		}
 
 	         	main.append(table);
 	          	table.append(table_head);
 	          	table_head.append(name_time);
 	          	name_time.append(prod_name);
-	          	name_time.append(time);          	
+	          	        	
 	          	table_head.append(del);
 
 	            table.insertAdjacentHTML('beforeend', '<div id="stat_meal1" class="stats"><div id="prot_prod" class="elem_prod">Б ' + 

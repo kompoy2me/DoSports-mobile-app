@@ -2,6 +2,7 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="css/auth_reg.css">
+        <script src="js/calculation.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
 
@@ -45,7 +46,7 @@
                                     window.localStorage.setItem("weight", data[11]);
                                     window.localStorage.setItem("lifestyle", data[12]);
                                     //console.log(window.localStorage.getItem("lifestyle"));
-
+                                    BMI(data[9],data[11],data[10],data[7],data[12]);
                                     window.location.href = 'footer.html';
                                 }
                              }
@@ -59,6 +60,12 @@
         </script>
     </head>
     <body>
+        <div class="logo">
+      
+        <div id="logo1">
+          <img src="img/logo_00.png" alt="" width="146" height="92">
+      </div>
+      </div>
         <input type="text" class="input_field" id="login" placeholder="Логин или email">
         <input type="password" id="password" class="input_field" placeholder="Пароль">
         

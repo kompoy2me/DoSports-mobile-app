@@ -60,7 +60,9 @@ body {
   height: 14px;
   margin:0 0 7px 40px;
 }
-
+.journal{
+	text-align: center;
+}
 .bar {
   width: 1%;
   height: 14px;

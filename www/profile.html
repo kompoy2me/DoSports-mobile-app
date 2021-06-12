@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/profile.css">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
@@ -13,7 +14,7 @@
         document.getElementById('weight').innerHTML += window.localStorage.getItem("weight") + " кг";
         document.getElementById('age').innerHTML += window.localStorage.getItem("age")+ " лет";
 
-        document.getElementById('test').innerHTML = 
+        /*document.getElementById('test').innerHTML = 
                       "BMI: " +
                       "<br>cal_norm: " + window.localStorage.getItem("cal_norm") + 
                       "<br>prot_norm: " + window.localStorage.getItem("prot_norm") + 
@@ -25,17 +26,48 @@
                       "<br>ID_MEAL: " + window.localStorage.getItem("ID_MEAL") + 
                       "<br>ID_PROD: " + window.localStorage.getItem("ID_PROD") + 
                       "<br>DAY_DATE: " + window.localStorage.getItem("DAY_DATE") +  
-                      "<br>DIARY_ARRAY: " + window.localStorage.getItem("DIARY_ARRAY");
+                      "<br>DIARY_ARRAY: " + window.localStorage.getItem("DIARY_ARRAY");*/
 
   			$("#exit").click(function(){
-  				 window.localStorage.removeItem("login");
-  				 window.location.href = 'authorization.html';
+          var isExit = confirm("При выходе из аккаунта все данные будут утеряны. Вы действительно хотите выйти?");
+          
+          if (isExit){
+            window.localStorage.removeItem("login");
+            window.location.href = 'authorization.html';
+          }
+  				
   			})
 
         $("#edit").click(function(){
            window.location.href = 'BMIcalculate.html';
         })
   		
+       
+      
+
+//
+//    addmob
+//      
+function onDeviceReady() {
+      document.removeEventListener('deviceready', onDeviceReady, false);
+      
+      // Set AdMobAds options:
+      admob.setOptions({
+        publisherId: "ca-app-pub-6846855505163448/7478878388",
+        autoShowBanner: true,
+        bannerAtTop: true, 
+      });
+      
+      // Start showing banners (atomatic when autoShowBanner is set to true)
+      admob.createBannerView();
+
+    }
+    
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+//
+//    addmob
+//
     </script>
   </head>
   <body>
@@ -54,7 +86,7 @@
         </div>
       </div>
 
-      <div id="ad"></div>
+
 
       <div class="table">
         <div id="user_param">

@@ -7,3 +7,24 @@ body {
 	background-color: #2F2F31;
 	color: #CCCCCC;
 }
+.text{
+	background-color: #161616;
+	padding: 5%;
+}
+.center_text{
+	
+	background-color: #161616;
+	padding: 5%;
+}
+.logo{
+	text-align: center;
+	margin: 30px 0 30px 0;
+}
+.page {
+	
+	color: #CCCCCC;
+	padding: 5%;
+	size: 14pt;
+	height: 100%;
+
+}

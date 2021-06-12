@@ -34,26 +34,44 @@
 			if (Math.round((+prot_sum / +prot_norm)*100)>100) {
 				document.getElementById('bar_prot').style.width = '100%';
 				document.getElementById('bar_prot').style.backgroundColor = "#D7112A";
+			}
+			else{
+				document.getElementById('bar_prot').style.backgroundColor = "#E77817";
+				document.getElementById('bar_prot').style.width = Math.round((+prot_sum / +prot_norm)*100)+"%";
+			};
+			if (Math.round((+cal_sum / +cal_norm)*100)>100) {
 				document.getElementById('bar_cal').style.width = '100%';
 				document.getElementById('bar_cal').style.backgroundColor = "#D7112A";
+			}
+			else{
+				document.getElementById('bar_cal').style.backgroundColor = "#E77817";
+				document.getElementById('bar_cal').style.width = Math.round((+cal_sum / +cal_norm)*100)+"%";
+			};
+			if (Math.round((+fat_sum / +fat_norm)*100)>100) {
 				document.getElementById('bar_fat').style.width = '100%';
 				document.getElementById('bar_fat').style.backgroundColor = "#D7112A";
+			}
+			else{
+				document.getElementById('bar_fat').style.backgroundColor = "#E77817";
+				document.getElementById('bar_fat').style.width = Math.round((+fat_sum / +fat_norm)*100)+"%";
+			};
+			if (Math.round((+carb_sum / +carb_norm)*100)>100) {
 				document.getElementById('bar_carb').style.width = '100%';
 				document.getElementById('bar_carb').style.backgroundColor = "#D7112A";
+			}
+			else{
+				document.getElementById('bar_carb').style.backgroundColor = "#E77817";
+				document.getElementById('bar_carb').style.width = Math.round((+carb_sum / +carb_norm)*100)+"%";
+			};
+			if (Math.round((+cell_sum / +cell_norm)*100)>100) {
 				document.getElementById('bar_cell').style.width = '100%';
 				document.getElementById('bar_cell').style.backgroundColor = "#D7112A";
 			}
-			else {
-				document.getElementById('bar_prot').style.backgroundColor = "#E77817";
-				document.getElementById('bar_prot').style.width = Math.round((+prot_sum / +prot_norm)*100)+"%";
-				document.getElementById('bar_cal').style.backgroundColor = "#E77817";
-				document.getElementById('bar_cal').style.width = Math.round((+cal_sum / +cal_norm)*100)+"%";
-				document.getElementById('bar_fat').style.backgroundColor = "#E77817";
-				document.getElementById('bar_fat').style.width = Math.round((+fat_sum / +fat_norm)*100)+"%";
-				document.getElementById('bar_carb').style.backgroundColor = "#E77817";
-				document.getElementById('bar_carb').style.width = Math.round((+carb_sum / +carb_norm)*100)+"%";
+			else{
 				document.getElementById('bar_cell').style.backgroundColor = "#E77817";
 				document.getElementById('bar_cell').style.width = Math.round((+cell_sum / +cell_norm)*100)+"%";
+				
+				
 			};
 			
 			};

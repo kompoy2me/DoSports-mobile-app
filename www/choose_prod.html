@@ -7,24 +7,46 @@
 </head>
 <body>
 	<script type="text/javascript">
-  		$("#cancel").click(function(){
+  			$("#cancel").click(function(){
   			 load_p("create_meal.html");
-  		})
+  			})
 
 	  		$("#cancel_m").click(function(){
 	  			document.getElementById('modal').style.display = 'none';
 	  		});  
-
-
+/*
+			CATEGORIES
+*/
+	  		$("#meat").click(function(){
+	  			search_by_category(1);
+	  		});
+	  		$("#groats").click(function(){
+	  			search_by_category(2);
+	  		});
+	  		$("#veget").click(function(){
+	  			search_by_category(3);
+	  		});
+	  		$("#fish").click(function(){
+	  			search_by_category(4);
+	  		});
+	  		$("#milk").click(function(){
+	  			search_by_category(5);
+	  		});
+	  		$("#fruit").click(function(){
+	  			search_by_category(6);
+	  		});
+	  		$("#nut").click(function(){
+	  			search_by_category(7);
+	  		});
+/*
+			CATEGORIES END
+*/
 	    	$("#name").keyup(function() {
-	    		
 		        var name = $('#name').val();
-
 		        if (name === "") {
 			            $("#display").html("");
 			        }
 			        else {
-			        	
 			 			$.post( 
                         "http://ds.graverx4.beget.tech/anotherMobileApp/search_prod.php", 
                         { search:name})
@@ -41,6 +63,19 @@
 	    	});
 	 	
 	 
+	 function search_by_category(type_c) {
+	   $.post( 
+       		"http://ds.graverx4.beget.tech/anotherMobileApp/search_by_category.php", 
+       		{ search:type_c})
+            .done(function( data ) {
+            	document.getElementById('display').innerHTML = "";
+                data.forEach(function(prod) {
+                	add_to(prod[0],prod[1], prod[2], prod[3], prod[4], prod[5]);
+                });
+                         	 
+            })
+	 
+	}
 	function fill(Value) {
 	    $('#search').val(Value); 
 	    $('#display').hide(); 
@@ -55,8 +90,19 @@
         	<input type="text" class="inp_field" id="name" placeholder="">
       	</div>
 
-		<div class="announcement">Введите название продукта...</div>
-		<div id="display"></div>
+		
+		<div id="display">
+			<div id="categories">
+				<div class="announcement">Введите название продукта или выберите из категории...</div>
+				<div class="category" id="meat" >Мясо и птица</div>
+				<div class="category" id="groats" >Крупы и мука</div>
+				<div class="category" id="veget">Овощи</div>
+				<div class="category" id="fish">Рыба и морепродукты</div>
+				<div class="category" id="milk">Молочные продукты</div>
+				<div class="category" id="fruit">Фрукты и ягоды</div>
+				<div class="category" id="nut">Орехи и сухофрукты</div>
+			</div>
+		</div>
 
 		<div id="modal">
 			

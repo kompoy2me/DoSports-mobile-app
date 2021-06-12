@@ -20,10 +20,11 @@ body {
 .inpt {
 	margin: 0 auto;
 	width: 90%;
-	border-bottom: 2px solid #CCCCCC;
+	
 }
 .inp_field {
 	border: none;
+	border-bottom: 2px solid #CCCCCC;
 	background-color: #2F2F31;
 	width: 100%;
 	font-size: 12pt;

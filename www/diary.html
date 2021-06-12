@@ -16,6 +16,9 @@
 /*
 			MAIN
 */		
+		var curr_date = new Date();
+		localStorage.setItem('DAY_DATE', curr_date.toLocaleDateString());
+
 		group_prods(localStorage.getItem('DAY_DATE'));
 		update_bar();
 /*
@@ -26,6 +29,25 @@
   			localStorage.setItem('array_prods',JSON.stringify(arr));
   			load_p("create_meal.html");
   		})
+  		$("#label_prot").click(function(){
+  			alert("Белки")
+  		})
+  		$("#label_fat").click(function(){
+  			alert("Жиры")
+  		})
+  		$("#label_carb").click(function(){
+  			alert("Углеводы")
+  		})
+  		$("#label_cal").click(function(){
+  			alert("Калории")
+  		})
+  		$("#label_cell").click(function(){
+  			alert("Клетчатка")
+  		})
+
+  		$("#journalIcon").click(function(){
+  			load_p("all_meals.html");
+  		})
 	</script>
 
 <div class="page">
@@ -35,18 +57,24 @@
 -->
 	<div id="header">
 
-		<div id="arr_prev" class="arr"><</div>
+		<!--<div id="arr_prev" class="arr"><</div>-->
 		<script type="text/javascript">
 			var now = new Date();
 			var days =["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
 			var months =["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-			document.getElementById('curr_date').innerHTML = now.getDate() + " " + months[now.getMonth()] + ",<br>" +  days[now.getDay()];
+			document.getElementById('curr_date').innerHTML = now.getDate() + " " + months[now.getMonth()] + ", " +  days[now.getDay()];
 		</script>
 		<div id="curr_date"></div>
 
-		<div id="arr_next" class="arr">></div>
+		<!--<div id="arr_next" class="arr">></div>-->
 
 	</div>
+	 <div class="journal">
+      
+        <div id="journalIcon">
+          <img src="img/calendar1.png" alt="" width="30" height="30">
+      </div>
+      </div>
 
 <!--
 			STATISCTICS

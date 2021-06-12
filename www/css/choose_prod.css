@@ -27,6 +27,7 @@ body {
 }
 .inpt {
 	margin: 0 auto;
+	margin-bottom: 20px;
 	width: 90%;
 	border-bottom: 2px solid #CCCCCC;
 	display: flex;
@@ -119,4 +120,9 @@ body {
 	text-align: center;
 	font-size: 12pt;
 	margin: 40px 0 30px 0;
+}
+.category {
+	background-color: #161616;
+	padding: 15px 10px 15px 10px;
+	margin: 10px 0 10px 0;
 }

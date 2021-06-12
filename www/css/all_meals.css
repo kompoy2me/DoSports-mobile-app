@@ -1,0 +1,61 @@
+body {
+	margin: 0;
+	padding: 0;
+
+	width: 100vw;
+	height: 100vh;
+	background-color: #2F2F31;
+	color: #CCCCCC;
+}
+#cancel {
+	display: inline-block;
+	margin-bottom: 30px;
+	float: left;
+}
+.page {
+	padding: 5%;
+}
+#display {
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+#meal_date{
+	margin: 20px 0 20px 0;
+}
+#table_meal {
+	background-color: #161616;
+	padding: 15px 10px 15px 10px;
+	margin: 10px 0 10px 0;
+	
+}
+#delete_meal {
+	font-size: 14pt;
+
+}
+#stat_meal {
+	margin: 10px 8px 0 8px;
+	display: flex;
+	align-items: center;
+  	justify-content: space-around;
+}
+#table_head {
+	display: flex;
+	justify-content: space-between;
+}
+#head_table_meal {
+	display: flex;
+	align-items: center;
+  	justify-content: space-between;
+  	margin: 5px 8px 20px 8px;
+}
+#quant_prod{
+	margin-right: 40px;
+	font-size: 14pt;
+	color: #898989; 
+}
+.stats {
+	display: flex;
+	justify-content: space-between;
+	font-size: 11pt;
+	margin: 5px 20px 0 20px;
+}
